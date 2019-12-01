@@ -93,6 +93,7 @@ export function createParamsForAPIQuery(
 
 /**
  * useOpenWeatherMapAPI
+ * React hook for fetching and displaying weather data using OpenWeatherMap API (https://openweathermap.org/)
  *
  * @export
  * @param {IConfig} config
