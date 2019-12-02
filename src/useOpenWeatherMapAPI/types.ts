@@ -33,9 +33,9 @@ export type QueryParamsType = {
   lat?: number;
 };
 
-export type QueryByType = "name" | "id" | "geo" | "zip";
+export type QueryByType = string | "name" | "id" | "geo" | "zip";
 
-export type QueryUnitsType = "metric" | "imperial";
+export type QueryUnitsType = string | "metric" | "imperial";
 
 export type QueryParamObjectEntry = string[][];
 

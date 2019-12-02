@@ -9,7 +9,6 @@ import {
   UNKNOWN_ERROR_MSG
 } from "./constants";
 import {
-  ActionTypes,
   QueryParamsType,
   QueryByType,
   QueryParamObjectEntry,
@@ -97,12 +96,13 @@ export function createParamsForAPIQuery(
  *
  * @export
  * @param {IConfig} config
- * @returns React.Reducer<IState, ActionTypes>
+ * @returns [IState, () => void]
  */
-export function useOpenWeatherMapAPI(config: IConfig) {
-  const [state, dispatch] = React.useReducer<
-    React.Reducer<IState, ActionTypes>
-  >(openWeatherMapAPIReducer, initialState);
+export function useOpenWeatherMapAPI(config: IConfig): [IState, () => void] {
+  const [state, dispatch] = React.useReducer(
+    openWeatherMapAPIReducer,
+    initialState
+  );
 
   const baseParams: IParams = {
     APPID: config.key,
@@ -123,14 +123,14 @@ export function useOpenWeatherMapAPI(config: IConfig) {
 
     fetch(`${API_URL}?${paramsForAPIQuery.toString()}`)
       .then(r => r.json())
-      .then(data => {
-        if (data.cod === 200) {
-          dispatch(setWeatherData(data));
+      .then(response => {
+        if (response.cod === 200) {
+          dispatch(setWeatherData(response));
         } else {
           dispatch(
             setWeatherError({
-              cod: data.cod || UNKNOWN_ERROR_CODE,
-              message: data.message || UNKNOWN_ERROR_MSG
+              cod: response.cod || UNKNOWN_ERROR_CODE,
+              message: response.message || UNKNOWN_ERROR_MSG
             })
           );
         }
