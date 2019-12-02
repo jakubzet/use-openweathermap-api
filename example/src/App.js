@@ -4,7 +4,7 @@ import useOpenWeatherMapAPI from "@jakubzet/use-openweathermap-api";
 
 const App = () => {
   const [state, fetchWeather] = useOpenWeatherMapAPI({
-    key: "07229c74486557510cd3cd1eeac1ad1f",
+    key: "INSERT_YOUR_API_KEY_HERE",
     queryConfig: {
       cityName: "Oborniki Śląskie",
       countryCode: "pl",
@@ -18,21 +18,44 @@ const App = () => {
   });
 
   return (
-    <div>
-      <p>Loading: {state.pending ? "true" : "false"}</p>
-      {state.error && (
+    <main>
+      <h1>Demo of useOpenWeatherMapAPI hook</h1>
+
+      <section>
+        <h4>Loading state:</h4>
+        <p>{state.pending ? "true" : "false"}</p>
+      </section>
+
+      <section>
+        <h4>Error:</h4>
         <p>
-          Error: {state.error.cod} : {state.error.message}
+          {state.error
+            ? `Error: ${state.error.cod} : ${state.error.message}`
+            : "nope"}
         </p>
-      )}
-      {state.data && state.data.name && state.data.main && (
+      </section>
+
+      <section>
+        <h4>Data:</h4>
         <p>
-          {state.data.name}: {state.data.main.temp}*C / max{" "}
-          {state.data.main.temp_max}*C / min {state.data.main.temp_min}*C
+          {state.data && state.data.name && state.data.main ? (
+            <>
+              Currently in {state.data.name}: {state.data.main.temp} degrees
+              <br />
+              Max: {state.data.main.temp_max} degrees
+              <br />
+              Min: {state.data.main.temp_min} degrees
+            </>
+          ) : (
+            "nope"
+          )}
         </p>
-      )}
-      <button onClick={fetchWeather}>Fetch again</button>
-    </div>
+      </section>
+
+      <button onClick={fetchWeather}>
+        Fetch data (please remember to add your API key to config beforehand)
+      </button>
+    </main>
   );
 };
 export default App;
