@@ -1,1 +1,1 @@
-export { useOpenWeatherMapAPI as default } from "./useOpenWeatherMapAPI/useOpenWeatherMapAPI";
+export { useOpenWeatherMapAPI } from "./useOpenWeatherMapAPI/useOpenWeatherMapAPI";

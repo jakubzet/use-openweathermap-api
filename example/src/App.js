@@ -1,17 +1,13 @@
 import React from "react";
 
-import useOpenWeatherMapAPI from "@jakubzet/use-openweathermap-api";
+import { useOpenWeatherMapAPI } from "@jakubzet/use-openweathermap-api";
 
-const App = () => {
+const Example = () => {
   const [state, fetchWeather] = useOpenWeatherMapAPI({
-    key: "REPLACE_ME",
+    key: "REPLACE_ME_WITH_API_KEY",
     queryConfig: {
-      cityName: "Oborniki Śląskie",
-      countryCode: "pl",
-      zipCode: 94040,
-      id: 2172797,
-      lat: 61,
-      lon: 62
+      cityName: "Warszawa",
+      countryCode: "pl"
     },
     queryType: "name",
     units: "metric"
@@ -57,4 +53,5 @@ const App = () => {
     </main>
   );
 };
-export default App;
+
+export default Example;
