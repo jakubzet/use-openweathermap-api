@@ -4,7 +4,7 @@ import useOpenWeatherMapAPI from "@jakubzet/use-openweathermap-api";
 
 const App = () => {
   const [state, fetchWeather] = useOpenWeatherMapAPI({
-    key: "INSERT_YOUR_API_KEY_HERE",
+    key: "REPLACE_ME",
     queryConfig: {
       cityName: "Oborniki Śląskie",
       countryCode: "pl",
@@ -30,26 +30,25 @@ const App = () => {
         <h4>Error:</h4>
         <p>
           {state.error
-            ? `Error: ${state.error.cod} : ${state.error.message}`
-            : "nope"}
+            ? `Error: ${state.error.cod} - ${state.error.message}`
+            : "Nope"}
         </p>
       </section>
 
       <section>
         <h4>Data:</h4>
-        <p>
-          {state.data && state.data.name && state.data.main ? (
-            <>
-              Currently in {state.data.name}: {state.data.main.temp} degrees
-              <br />
-              Max: {state.data.main.temp_max} degrees
-              <br />
-              Min: {state.data.main.temp_min} degrees
-            </>
-          ) : (
-            "nope"
-          )}
-        </p>
+        {state.data && state.data.name && state.data.main ? (
+          <>
+            <p>Weather in {state.data.name}:</p>
+            <ul>
+              <li>Currently: {state.data.main.temp} degrees</li>
+              <li>Max: {state.data.main.temp_max} degrees</li>
+              <li>Min: {state.data.main.temp_min} degrees</li>
+            </ul>
+          </>
+        ) : (
+          <p>Nope</p>
+        )}
       </section>
 
       <button onClick={fetchWeather}>
