@@ -1,6 +1,6 @@
 {
   "name": "@jakubzet/use-openweathermap-api",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "React hook for fetching and displaying weather data using OpenWeatherMap API (https://openweathermap.org/)",
   "author": "jakubzet",
   "license": "MIT",
